@@ -1,0 +1,21 @@
+# Standard Unity ignore
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Memory dumps
+/[Mm]emoryCaptures/
+
+# Asset meta data should generally be ignored unless you use them
+*.pidb.meta
+
+# Visual Studio / VS Code cache
+.vs/
+.gradle/
+.idea/
+*.csproj
+*.sln

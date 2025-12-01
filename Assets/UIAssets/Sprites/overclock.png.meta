@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 53ce1317175562647b9cd8d341be34ce
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: overclock_36
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 53
+        width: 315
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7365111465387724d9439b5c1abcce5c
+      internalID: 1301538997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      overclock_0: -1030838316
+      overclock_1: -571312660
+      overclock_10: 1996069316
+      overclock_11: -1786177582
+      overclock_12: -1767539875
+      overclock_13: -1066188242
+      overclock_14: 1921422623
+      overclock_15: -1883478607
+      overclock_16: 2083487095
+      overclock_17: -2036074337
+      overclock_18: 701522936
+      overclock_19: -1853794426
+      overclock_2: 1849267508
+      overclock_20: -1813926412
+      overclock_21: 847615870
+      overclock_22: 1004826704
+      overclock_23: -186478264
+      overclock_24: -1270445901
+      overclock_25: -617086441
+      overclock_26: -81893117
+      overclock_27: -558034001
+      overclock_28: 1900642010
+      overclock_29: -1645494406
+      overclock_3: 1911179254
+      overclock_30: 2090965370
+      overclock_31: -1415286813
+      overclock_32: 1564932010
+      overclock_33: 1656219692
+      overclock_34: -71707606
+      overclock_35: -131943289
+      overclock_36: 1301538997
+      overclock_37: 27807695
+      overclock_38: -870743013
+      overclock_39: 900819500
+      overclock_4: -1317263333
+      overclock_40: 97721793
+      overclock_41: 2066804147
+      overclock_42: 1335423358
+      overclock_43: 2121189573
+      overclock_44: 937737683
+      overclock_45: -1416368120
+      overclock_46: -1631359550
+      overclock_47: 280289180
+      overclock_5: 2144748068
+      overclock_6: -1903342459
+      overclock_7: 1685817814
+      overclock_8: -1969306506
+      overclock_9: -2119707573
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
