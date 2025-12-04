@@ -75,9 +75,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 _wallCheckSize = new Vector2(0.5f, 1f);
     #endregion
 
+    
     #region LAYERS & TAGS
-    [Header("Layers & Tags")]
+    [Header("GroundCheck Layers")]
     [SerializeField] private LayerMask _groundLayer;
+    
+    [Header("WallJump Layers")]
+    [Tooltip("Layer Mask for layers to wallJump from (")]
+    [SerializeField] private LayerMask wallJumpLayer; // Layer for wall jump detection
+
     #endregion
 
     private void Awake()
@@ -162,12 +168,12 @@ public class PlayerMovement : MonoBehaviour
                 _jumpsLeft = Data.jumpAmount; 
             }
 
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
-                    || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
+            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, wallJumpLayer) && IsFacingRight)
+                    || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, wallJumpLayer) && !IsFacingRight)) && !IsWallJumping)
                 LastOnWallRightTime = Data.coyoteTime;
 
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
-                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
+            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, wallJumpLayer) && !IsFacingRight)
+                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, wallJumpLayer) && IsFacingRight)) && !IsWallJumping)
                 LastOnWallLeftTime = Data.coyoteTime;
 
             LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);

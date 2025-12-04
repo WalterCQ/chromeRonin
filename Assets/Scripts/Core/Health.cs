@@ -56,14 +56,13 @@ public class Health : MonoBehaviour, IDamageable
         if (isPlayer && GameManager.Instance != null)
         {
             GameManager.Instance.UpdatePlayerHealth(_currentHealth);
+            CameraShakeManager.Instance.Shake(10f);  
         }
 
         Debug.Log($"{gameObject.name} took {damage} dmg. HP: {_currentHealth}/{maxHealth}");
 
         if (gameObject.activeInHierarchy) StartCoroutine(FlashRoutine());
         
-        if (CameraShake.Instance != null && isPlayer) CameraShake.Instance.Shake(3f, 0.2f);
-
         if (_currentHealth <= 0)
         {
             Die();
@@ -89,8 +88,8 @@ public class Health : MonoBehaviour, IDamageable
         {
             if (TimeManager.Instance != null)
                 TimeManager.Instance.AddChronoEnergy(TimeManager.Instance.refillAmountOnKill);
-            
-            if (CameraShake.Instance != null) CameraShake.Instance.Shake(2f, 0.1f);
+
+            CameraShakeManager.Instance.Shake(2f);   
         }
 
         if (destroyOnDeath) Destroy(gameObject);
