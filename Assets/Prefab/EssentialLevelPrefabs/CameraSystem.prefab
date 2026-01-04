@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 1732625368546316552}
   - component: {fileID: 6604853266342291769}
   - component: {fileID: 8721841002543545046}
+<<<<<<< HEAD
+=======
   - component: {fileID: 5016047791711546545}
+>>>>>>> upstream/dev
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -89,6 +92,8 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+<<<<<<< HEAD
+=======
 --- !u!114 &5016047791711546545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +111,7 @@ MonoBehaviour:
   m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 0, y: 0, z: 0}
+>>>>>>> upstream/dev
 --- !u!1 &5477280726642969971
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +157,10 @@ GameObject:
   - component: {fileID: 6302042413101338910}
   - component: {fileID: 7332692546196338116}
   - component: {fileID: 4825171787069885517}
+<<<<<<< HEAD
+  - component: {fileID: 2202583495112417735}
+=======
+>>>>>>> upstream/dev
   - component: {fileID: 883937781505388177}
   m_Layer: 0
   m_Name: Player VCam
@@ -197,7 +207,11 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
+<<<<<<< HEAD
+    OrthographicSize: 7
+=======
     OrthographicSize: 8
+>>>>>>> upstream/dev
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -230,6 +244,31 @@ MonoBehaviour:
   m_Damping: 0.5
   m_MaxWindowSize: -1
   m_Padding: 0
+<<<<<<< HEAD
+--- !u!114 &2202583495112417735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461406138316991426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c11265b855408d42af33d62691f5194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseLocalSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> upstream/dev
 --- !u!114 &883937781505388177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,7 +457,11 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
+<<<<<<< HEAD
+  orthographic size: 7
+=======
   orthographic size: 8
+>>>>>>> upstream/dev
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -458,7 +501,11 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
+<<<<<<< HEAD
+  m_UpdateMethod: 2
+=======
   m_UpdateMethod: 1
+>>>>>>> upstream/dev
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1

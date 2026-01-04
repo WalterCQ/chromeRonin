@@ -45,7 +45,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
+<<<<<<< HEAD
+  spriteMeshType: 0
+=======
   spriteMeshType: 1
+>>>>>>> upstream/dev
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100

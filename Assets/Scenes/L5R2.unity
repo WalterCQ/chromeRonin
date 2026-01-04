@@ -413,6 +413,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
+=======
 --- !u!1 &22245912
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +492,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1001 &38456409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1330,6 +1333,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
+=======
 --- !u!1 &132327787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1412,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1 &133786943
 GameObject:
   m_ObjectHideFlags: 0
@@ -6911,6 +6917,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aa190764e157d649b9289a54015622c, type: 3}
+<<<<<<< HEAD
+=======
 --- !u!1 &244060521
 GameObject:
   m_ObjectHideFlags: 0
@@ -6988,6 +6996,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1 &248984658
 GameObject:
   m_ObjectHideFlags: 0
@@ -7445,6 +7454,8 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 89.70313, y: 1}
   m_EdgeRadius: 0
+<<<<<<< HEAD
+=======
 --- !u!1 &280676964
 GameObject:
   m_ObjectHideFlags: 0
@@ -7522,6 +7533,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1 &304997575
 GameObject:
   m_ObjectHideFlags: 0
@@ -7718,6 +7730,8 @@ Transform:
   - {fileID: 1768728509}
   m_Father: {fileID: 559212462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!1 &326057671
 GameObject:
   m_ObjectHideFlags: 0
@@ -7795,6 +7809,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1 &338526100
 GameObject:
   m_ObjectHideFlags: 0
@@ -9115,6 +9130,8 @@ Transform:
   - {fileID: 157135688}
   - {fileID: 1658589334}
   - {fileID: 317551151}
+<<<<<<< HEAD
+=======
   - {fileID: 244060522}
   - {fileID: 280676965}
   - {fileID: 326057672}
@@ -9123,6 +9140,7 @@ Transform:
   - {fileID: 693452927}
   - {fileID: 1284370253}
   - {fileID: 22245913}
+>>>>>>> upstream/dev
   - {fileID: 2124335785}
   - {fileID: 1272929610}
   m_Father: {fileID: 0}
@@ -9397,6 +9415,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
+=======
 --- !u!1 &634484051
 GameObject:
   m_ObjectHideFlags: 0
@@ -9474,6 +9494,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1 &636246835
 GameObject:
   m_ObjectHideFlags: 0
@@ -9904,6 +9925,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5105d43ef2331f4aa2b4cec22f0bceb, type: 3}
+<<<<<<< HEAD
+=======
 --- !u!1 &693452926
 GameObject:
   m_ObjectHideFlags: 0
@@ -9981,6 +10004,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1001 &730335861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11912,7 +11936,11 @@ Transform:
   m_GameObject: {fileID: 1006516006}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
+<<<<<<< HEAD
+  m_LocalPosition: {x: 127.1, y: -179.27, z: -0.062328923}
+=======
   m_LocalPosition: {x: 127.1, y: -179.305, z: -0.062328923}
+>>>>>>> upstream/dev
   m_LocalScale: {x: -0.1, y: -0.1, z: -0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -13951,6 +13979,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1918952588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!1 &1284370252
 GameObject:
   m_ObjectHideFlags: 0
@@ -14028,6 +14058,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+>>>>>>> upstream/dev
 --- !u!1 &1285391958
 GameObject:
   m_ObjectHideFlags: 0
@@ -17311,8 +17342,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
   isActivated: 0
+<<<<<<< HEAD
+  activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
+  inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
   activeSprite: {fileID: -1105531965, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
   inactiveSprite: {fileID: -637671047, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -18094,11 +18130,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6066661532906235674, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
+      value: 6.2944694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6066661532906235674, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.593895
+=======
       value: 4.912565
       objectReference: {fileID: 0}
     - target: {fileID: 6066661532906235674, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.596415
+>>>>>>> upstream/dev
       objectReference: {fileID: 0}
     - target: {fileID: 6066661532906235674, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18106,11 +18150,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6302042413101338910, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
+      value: 6.2944694
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302042413101338910, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.593885
+=======
       value: 4.912565
       objectReference: {fileID: 0}
     - target: {fileID: 6302042413101338910, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.596415
+>>>>>>> upstream/dev
       objectReference: {fileID: 0}
     - target: {fileID: 6302042413101338910, guid: e7589d8fd33abf74fa95b7add112befe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22459,9 +22511,15 @@ Transform:
   m_GameObject: {fileID: 2014825076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
+  m_LocalPosition: {x: 157.36, y: -90.25, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+=======
   m_LocalPosition: {x: 157.313, y: -90.23, z: -10}
   m_LocalScale: {x: 0.120000005, y: 0.120000005, z: 0.120000005}
   m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 1768728509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22479,12 +22537,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
   isActivated: 0
+<<<<<<< HEAD
+  activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
+  inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+  onActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+=======
   activeSprite: {fileID: -1105531965, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
   inactiveSprite: {fileID: -637671047, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
   onActivate:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1585005722}
+>>>>>>> upstream/dev
         m_TargetAssemblyTypeName: DoorController, Assembly-CSharp
         m_MethodName: AddActiveSwitch
         m_Mode: 1
@@ -22499,7 +22566,11 @@ MonoBehaviour:
   onDeactivate:
     m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+      - m_Target: {fileID: 0}
+=======
       - m_Target: {fileID: 1585005722}
+>>>>>>> upstream/dev
         m_TargetAssemblyTypeName: DoorController, Assembly-CSharp
         m_MethodName: RemoveActiveSwitch
         m_Mode: 1
@@ -22587,7 +22658,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10000
+<<<<<<< HEAD
+  m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
   m_Sprite: {fileID: -637671047, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -27560,8 +27635,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
   isActivated: 0
+<<<<<<< HEAD
+  activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
+  inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
   activeSprite: {fileID: -1105531965, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
   inactiveSprite: {fileID: -637671047, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:

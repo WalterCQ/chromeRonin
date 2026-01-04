@@ -34,7 +34,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
+    filterMode: 1
+=======
     filterMode: 0
+>>>>>>> upstream/dev
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +47,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
+  spriteMode: 1
+=======
   spriteMode: 2
+>>>>>>> upstream/dev
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,10 +77,17 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+<<<<<<< HEAD
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+=======
     maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
+>>>>>>> upstream/dev
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -95,6 +110,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD
+    sprites: []
+=======
     sprites:
     - serializedVersion: 2
       name: tilemap1_px_0
@@ -600,6 +618,7 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+>>>>>>> upstream/dev
     outline: []
     physicsShape: []
     bones: []
@@ -610,6 +629,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+<<<<<<< HEAD
+    nameFileIdTable: {}
+=======
     nameFileIdTable:
       tilemap1_px_0: -1823999276
       tilemap1_px_1: -915681700
@@ -635,6 +657,7 @@ TextureImporter:
       tilemap1_px_7: 1297782305
       tilemap1_px_8: 225139885
       tilemap1_px_9: 243633145
+>>>>>>> upstream/dev
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
