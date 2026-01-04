@@ -13833,7 +13833,7 @@ MonoBehaviour:
       m_Calls: []
   useSlidingMovement: 1
   moveSpeed: 2
-  openOffset: {x: 0, y: 3, z: 0}
+  openOffset: {x: 0, y: 5, z: 0}
   animator: {fileID: 0}
   exitTriggerObject: {fileID: 0}
   doorCollider: {fileID: 1275084778}
