@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee853cd4ecf14b92bd571988988e8e4, type: 3}
+  m_Name: Level1_Intro
+  m_EditorClassIdentifier: 
+  sentences:
+  - speakerName: ???
+    text: 'Neural Link established. Vital signs: Stable. '
+    voiceOver: {fileID: 8300000, guid: 675ad6bd8569247cab3dac64a38fbf94, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: Wake up, Zane. I am your Oracle.
+    voiceOver: {fileID: 8300000, guid: cca2afc3997744acb83ac76f4e3af1c1, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: You are a weapon of Aeterna. We have work to do. Move.
+    voiceOver: {fileID: 8300000, guid: b465393c524fd4927a5a0cd444050502, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}

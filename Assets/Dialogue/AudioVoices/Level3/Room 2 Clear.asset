@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee853cd4ecf14b92bd571988988e8e4, type: 3}
+  m_Name: Room 2 Clear
+  m_EditorClassIdentifier: 
+  sentences:
+  - speakerName: Unknown Signal
+    text: Please! If anyone is listening...
+    voiceOver: {fileID: 0}
+    avatar: {fileID: 21300000, guid: 077e61f4c019344789b455c8b62295d5, type: 3}
+  - speakerName: Unknown Signal
+    text: We aren't terrorists! We're researchers!
+    voiceOver: {fileID: 0}
+    avatar: {fileID: 21300000, guid: 077e61f4c019344789b455c8b62295d5, type: 3}
+  - speakerName: Unknown Signal
+    text: "Aeterna is turning people into\u2014\n"
+    voiceOver: {fileID: 0}
+    avatar: {fileID: 21300000, guid: 077e61f4c019344789b455c8b62295d5, type: 3}
+  - speakerName: System
+    text: '[CONNECTION INTERRUPTED]'
+    voiceOver: {fileID: 0}
+    avatar: {fileID: 0}
+  - speakerName: Oracle
+    text: Ignore that. It was a corrupted file. Enemy propaganda.
+    voiceOver: {fileID: 8300000, guid: ab1a72a7c5f784a558e0e85de9185e09, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: Zane? Acknowledge. Zane!
+    voiceOver: {fileID: 8300000, guid: 7e571e9a1699849eb9cee7db4c6480c8, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}

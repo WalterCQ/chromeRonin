@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee853cd4ecf14b92bd571988988e8e4, type: 3}
+  m_Name: Room 3 Clear
+  m_EditorClassIdentifier: 
+  sentences:
+  - speakerName: Oracle
+    text: Sector cleared. Efficient work, Zane.
+    voiceOver: {fileID: 8300000, guid: ac585c29eb0ff40769fb0597713f3a3e, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: hat was just calibration. The real mission begins now.
+    voiceOver: {fileID: 8300000, guid: 968be782f536841498512a33e1644763, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: Proceed to the industrial sector.
+    voiceOver: {fileID: 8300000, guid: d8f2ba063bcd84f67913f225e2c81d70, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}

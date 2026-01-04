@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee853cd4ecf14b92bd571988988e8e4, type: 3}
+  m_Name: Room 1 Clear]
+  m_EditorClassIdentifier: 
+  sentences:
+  - speakerName: Oracle
+    text: Zane. Step away from the terminal.
+    voiceOver: {fileID: 8300000, guid: 9992be549f66b43368364234804f2eb9, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: 'Orders: Destroy the compromised servers. Leave nothing intact.'
+    voiceOver: {fileID: 8300000, guid: e7a5cc6455aa840a39128cae21ca2977, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}

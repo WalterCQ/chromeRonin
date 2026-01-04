@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee853cd4ecf14b92bd571988988e8e4, type: 3}
+  m_Name: Boss Defeated
+  m_EditorClassIdentifier: 
+  sentences:
+  - speakerName: Oracle
+    text: My calculations... were... wrong?
+    voiceOver: {fileID: 8300000, guid: cc4e9a8a28b3545ed991d7ae256d99c0, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: Free will... was not... a glitch...
+    voiceOver: {fileID: 8300000, guid: b49dfbb239313488095b7006a9bd0ce1, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
+  - speakerName: Oracle
+    text: It was... the... answer...
+    voiceOver: {fileID: 8300000, guid: 7fab12a9dbcda411f8ce87de1740fe52, type: 3}
+    avatar: {fileID: 21300000, guid: cf10ac0df268d4da5b01bcf7dad622c2, type: 3}
