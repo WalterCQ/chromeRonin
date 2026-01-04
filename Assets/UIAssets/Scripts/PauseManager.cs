@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -44,4 +45,61 @@ public class PauseManager : MonoBehaviour
     {
         Application.Quit();
     }
+=======
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class PauseManager : MonoBehaviour
+{
+    [Header("UI Groups")]
+    public GameObject pauseMenuPanel;
+    public GameObject hudPanel;
+    public GameObject keySettingsPanel;  
+
+    public void SetPauseState(bool isPaused)
+    {
+        if (pauseMenuPanel) 
+        {
+            pauseMenuPanel.SetActive(isPaused);
+            
+            CanvasGroup group = pauseMenuPanel.GetComponent<CanvasGroup>();
+            if (group != null)
+            {
+                group.alpha = 1f;            
+                group.blocksRaycasts = true; 
+                group.interactable = true;   
+            }
+        }
+        if (hudPanel) hudPanel.SetActive(!isPaused); 
+    }
+
+    public void ResumeButton()
+    {
+        if(GameManager.Instance != null)
+            GameManager.Instance.TogglePause();
+    }
+
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0); 
+    }
+
+    public void OpenKeySettings()
+    {
+        pauseMenuPanel.SetActive(false); 
+        keySettingsPanel.SetActive(true);  
+    }
+
+    public void CloseKeySettings()
+    {
+        keySettingsPanel.SetActive(false); 
+        pauseMenuPanel.SetActive(true);  
+    }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+>>>>>>> upstream/dev
 }

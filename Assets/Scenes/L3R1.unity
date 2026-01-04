@@ -11647,7 +11647,11 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<< HEAD
   m_Constraints: 0
+=======
+  m_Constraints: 4
+>>>>>>> upstream/dev
 --- !u!212 &811520173
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13637,7 +13641,11 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<< HEAD
   m_Constraints: 0
+=======
+  m_Constraints: 4
+>>>>>>> upstream/dev
 --- !u!212 &1188995213
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16807,7 +16815,11 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<< HEAD
   m_Constraints: 0
+=======
+  m_Constraints: 4
+>>>>>>> upstream/dev
 --- !u!212 &1780507478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19544,8 +19556,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
   isActivated: 0
+<<<<<<< HEAD
   activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
   inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  activeSprite: {fileID: -657836968, guid: a65918196d27b4ce186750b42a503687, type: 3}
+  inactiveSprite: {fileID: 2036928020, guid: a65918196d27b4ce186750b42a503687, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -19590,8 +19607,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 1
   isActivated: 0
+<<<<<<< HEAD
   activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
   inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  activeSprite: {fileID: -657836968, guid: a65918196d27b4ce186750b42a503687, type: 3}
+  inactiveSprite: {fileID: 2036928020, guid: a65918196d27b4ce186750b42a503687, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -19636,8 +19658,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 1
   isActivated: 0
+<<<<<<< HEAD
   activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
   inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  activeSprite: {fileID: -657836968, guid: a65918196d27b4ce186750b42a503687, type: 3}
+  inactiveSprite: {fileID: 2036928020, guid: a65918196d27b4ce186750b42a503687, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -19724,8 +19751,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.29, y: -20.852, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 70723234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19739,8 +19771,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.885, y: -21.661, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 70723234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19754,8 +19791,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.212, y: -30.856, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 70723234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19769,8 +19811,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.327, y: -25.884, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 70723234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19800,7 +19847,11 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<< HEAD
   m_Constraints: 0
+=======
+  m_Constraints: 4
+>>>>>>> upstream/dev
 --- !u!4 &4156246229645751654
 Transform:
   m_ObjectHideFlags: 0
@@ -19857,7 +19908,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10000
+<<<<<<< HEAD
   m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  m_Sprite: {fileID: 2036928020, guid: a65918196d27b4ce186750b42a503687, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -19909,7 +19964,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< HEAD
   m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  m_Sprite: {fileID: 2036928020, guid: a65918196d27b4ce186750b42a503687, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -19961,7 +20020,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< HEAD
   m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  m_Sprite: {fileID: 2036928020, guid: a65918196d27b4ce186750b42a503687, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20013,7 +20076,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< HEAD
   m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  m_Sprite: {fileID: 2036928020, guid: a65918196d27b4ce186750b42a503687, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20066,7 +20133,11 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<< HEAD
   m_Constraints: 0
+=======
+  m_Constraints: 4
+>>>>>>> upstream/dev
 --- !u!1 &4547241579885436787
 GameObject:
   m_ObjectHideFlags: 0

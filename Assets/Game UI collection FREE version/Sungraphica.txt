@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 https://sungraphica.itch.io/
 
 Instagram
@@ -6,4 +7,14 @@ https://www.instagram.com/sun_graphica/
 Pinterest
 https://www.pinterest.com/sun_graphica/_created/
 
+=======
+https://sungraphica.itch.io/
+
+Instagram
+https://www.instagram.com/sun_graphica/
+
+Pinterest
+https://www.pinterest.com/sun_graphica/_created/
+
+>>>>>>> upstream/dev
 I hope you like my works.

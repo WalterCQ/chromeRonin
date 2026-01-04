@@ -108,13 +108,6 @@ public class SmartIslandController : MonoBehaviour
             {
                 audioSource.Stop();
                 audioSource.clip = line.voiceOver;
-                
-                // Apply SFX volume for dialogue
-                float sfxVolume = AudioManager.Instance != null 
-                    ? AudioManager.Instance.GetSFXVolume() 
-                    : PlayerPrefs.GetFloat("SFXVolume", 1f);
-                audioSource.volume = sfxVolume;
-                
                 audioSource.Play();
                 waitTime = line.voiceOver.length;
                 

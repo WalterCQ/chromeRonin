@@ -2829,7 +2829,11 @@ Transform:
   m_GameObject: {fileID: 229138222}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 20.0104, y: -3.0413, z: 0}
+=======
+  m_LocalPosition: {x: 46, y: -3.0413, z: 0}
+>>>>>>> upstream/dev
   m_LocalScale: {x: 1.9793432, y: 1.9793432, z: 1.9793432}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3005,7 +3009,11 @@ Transform:
   m_GameObject: {fileID: 251514748}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 19.828, y: -2.9879, z: 0}
+=======
+  m_LocalPosition: {x: 45.5, y: -2.9879, z: 0}
+>>>>>>> upstream/dev
   m_LocalScale: {x: 1.9693547, y: 1.9693547, z: 1.9693547}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4413,8 +4421,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 30.685, y: -17.676, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 1053024065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4432,8 +4445,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
   isActivated: 0
+<<<<<<< HEAD
   activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
   inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  activeSprite: {fileID: -383179824, guid: db86b0daad7ff4504902eb00825d6f7d, type: 3}
+  inactiveSprite: {fileID: -1424428870, guid: db86b0daad7ff4504902eb00825d6f7d, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -4540,7 +4558,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10000
+<<<<<<< HEAD
   m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  m_Sprite: {fileID: -1424428870, guid: db86b0daad7ff4504902eb00825d6f7d, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6915,8 +6937,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -13.369, y: -17.663, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 1053024065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6934,8 +6961,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
   isActivated: 1
+<<<<<<< HEAD
   activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
   inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  activeSprite: {fileID: -383179824, guid: db86b0daad7ff4504902eb00825d6f7d, type: 3}
+  inactiveSprite: {fileID: -1424428870, guid: db86b0daad7ff4504902eb00825d6f7d, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -7042,7 +7074,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10000
+<<<<<<< HEAD
   m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  m_Sprite: {fileID: -1424428870, guid: db86b0daad7ff4504902eb00825d6f7d, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -23272,8 +23308,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 58.706, y: -26.634, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+=======
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_ConstrainProportionsScale: 1
+>>>>>>> upstream/dev
   m_Children: []
   m_Father: {fileID: 1053024065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23291,8 +23332,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
   isActivated: 0
+<<<<<<< HEAD
   activeSprite: {fileID: -1432126720, guid: bc8b93828b23e4643929300a82821073, type: 3}
   inactiveSprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  activeSprite: {fileID: -1105531965, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
+  inactiveSprite: {fileID: -637671047, guid: 3957c0e31723c43c1b606c5ea4b28825, type: 3}
+>>>>>>> upstream/dev
   onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -23399,7 +23445,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10000
+<<<<<<< HEAD
   m_Sprite: {fileID: -461166002, guid: bc8b93828b23e4643929300a82821073, type: 3}
+=======
+  m_Sprite: {fileID: -1424428870, guid: db86b0daad7ff4504902eb00825d6f7d, type: 3}
+>>>>>>> upstream/dev
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

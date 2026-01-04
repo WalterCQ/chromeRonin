@@ -360,9 +360,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a590904a7ac3779438e27266a747d7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   healthBarFill: {fileID: 0}
   chronoBarFill: {fileID: 8881520825577254360}
   chronoBarBorder: {fileID: 0}
+=======
+  chronoBarFill: {fileID: 8881520825577254360}
+>>>>>>> upstream/dev
   coinText: {fileID: 1277272493867548929}
 --- !u!1 &7508091961435962292
 GameObject:

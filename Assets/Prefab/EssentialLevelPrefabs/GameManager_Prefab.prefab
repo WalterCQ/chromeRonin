@@ -13,6 +13,10 @@ GameObject:
   - component: {fileID: 4442538323283925713}
   - component: {fileID: 3187387763116212795}
   - component: {fileID: 6057698333491209220}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 3389048341150877048}
+>>>>>>> upstream/dev
   m_Layer: 0
   m_Name: GameManager_Prefab
   m_TagString: Untagged
@@ -54,6 +58,10 @@ MonoBehaviour:
   playerCurrentHealth: 0
   spawnID: 0
   deathRestartDelay: 2
+<<<<<<< HEAD
+=======
+  mainMenuSceneName: MainMenu
+>>>>>>> upstream/dev
 --- !u!114 &4442538323283925713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +80,12 @@ MonoBehaviour:
   currentChronoEnergy: 0
   drainRate: 20
   refillAmountOnKill: 30
+<<<<<<< HEAD
   overclockKey: 108
+=======
+  killRefillMultiplier: 0.33
+  refillSpeed: 15
+>>>>>>> upstream/dev
 --- !u!114 &3187387763116212795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +136,11 @@ MonoBehaviour:
     m_ImpactRadius: 100
     m_DirectionMode: 0
     m_DissipationMode: 2
+<<<<<<< HEAD
     m_DissipationDistance: 100
+=======
+    m_DissipationDistance: 1000000
+>>>>>>> upstream/dev
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!114 &6057698333491209220
@@ -138,3 +155,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1269d1aa683b43458b6438dfafc5875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+--- !u!114 &3389048341150877048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7017530203594677982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eea5188752e4c50a6f6f982dcb5b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothTime: 0.5
+  stayDuration: 1
+  zOffset: -10
+  focusSize: 5
+  travelSize: 8
+  inputsToSkip: 3
+  playerTransform: {fileID: 0}
+  mapCollider: {fileID: 0}
+>>>>>>> upstream/dev

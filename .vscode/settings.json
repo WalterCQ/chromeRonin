@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "gamePrototype.sln"
+    "dotnet.defaultSolution": "chromeRonin(Mechanics+UI)1.1.sln"
 }

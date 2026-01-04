@@ -7,6 +7,8 @@ TagManager:
   - EnemyBullet
   - OneWayPlatform
   - VirtualCamera
+  - Exit
+  - Switch
   layers:
   - Default
   - TransparentFX
