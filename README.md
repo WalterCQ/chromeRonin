@@ -1,6 +1,10 @@
-# Chrome Ronin
+# SWE305 Game Design And Development Project chromeRonin
 
 Unity 2D action platformer project with player movement, combat, parry shield, enemies, hazards, portals, music, UI, and multi-level asset setup.
+
+## Screenshot
+
+![Gameplay preview](docs/screenshots/gameplay.png)
 
 ## Tech Stack
 
@@ -16,7 +20,7 @@ Unity 2D action platformer project with player movement, combat, parry shield, e
 
 ```bash
 git lfs install
-git clone https://github.com/WalterCQ/chromeRonin.git
+git clone https://github.com/WalterCQ/swe305-game-design-and-development-project-chromeronin.git
 ```
 
 ## Main Folders
