@@ -2,9 +2,15 @@
 
 Unity 2D action platformer project with player movement, combat, parry shield, enemies, hazards, portals, music, UI, and multi-level asset setup.
 
-## Screenshot
+## Screenshots
 
-![Gameplay preview](docs/screenshots/gameplay.png)
+![Main menu](docs/screenshots/main-menu.jpg)
+
+![Rooftop level](docs/screenshots/level-rooftop.jpg)
+
+![Industrial level](docs/screenshots/level-industrial.jpg)
+
+![City level](docs/screenshots/level-city.jpg)
 
 ## Tech Stack
 
