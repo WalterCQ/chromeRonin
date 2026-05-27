@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
@@ -24,7 +24,9 @@ namespace SlimUI.ModernMenu{
         public enum Theme {custom1, custom2, custom3};
         [Header("THEME SETTINGS")]
         public Theme theme;
+#pragma warning disable CS0414 // Field is assigned but never used
         private int themeIndex;
+#pragma warning restore CS0414
         public ThemedUIData themeController;
 
         [Header("PANELS")]

@@ -5,6 +5,16 @@ public class PlayerMovement : MonoBehaviour
 {
     public PlayerData Data;
 
+    // Cached Animator parameter hashes for performance
+    private static readonly int ANIM_IS_MOVING = Animator.StringToHash("isMoving");
+    private static readonly int ANIM_IS_JUMPING = Animator.StringToHash("isJumping");
+    private static readonly int ANIM_IS_GROUNDED = Animator.StringToHash("isGrounded");
+    private static readonly int ANIM_IS_DASHING = Animator.StringToHash("isDashing");
+    private static readonly int ANIM_IS_WALL_SLIDING = Animator.StringToHash("isWallSliding");
+    private static readonly int ANIM_IS_CLIMBING = Animator.StringToHash("isClimbing");
+    private static readonly int ANIM_VERTICAL_SPEED = Animator.StringToHash("VerticalSpeed");
+    private static readonly int ANIM_DOUBLE_JUMP = Animator.StringToHash("DoubleJump");
+
     [Header("Animation")]
     public Animator animator;
 
@@ -22,9 +32,15 @@ public class PlayerMovement : MonoBehaviour
     public bool IsSliding { get; private set; }
     public bool IsClimbing { get; private set; }
     
-    // --- NEW: Lock State for Cutscenes ---
     public bool IsInputLocked { get; private set; }
-    // -------------------------------------
+
+    [Header("Step Offset")]
+    public float stepHeight = 0.5f; // Max height the player can "walk up"
+    public float stepSmooth = 0.1f; // How fast they snap up
+
+    private bool _isDevModeActive = false;
+    [Header("Dev Mode")]
+    [SerializeField] private float _devFlySpeed = 15f;
 
     private Collider2D _currentLadder;
     
@@ -104,14 +120,40 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // --- NEW: Stop inputs if locked ---
+        if (GameInput.GetDevModeToggle())
+        {
+            ToggleDevMode();
+        }
+
+        if (_isDevModeActive)
+        {
+            _moveInput.x = GameInput.GetHorizontal();
+            _moveInput.y = GameInput.GetVertical();
+            
+            RB.velocity = new Vector2(_moveInput.x, _moveInput.y).normalized * _devFlySpeed;
+            
+            if (_moveInput.x != 0)
+                CheckDirectionToFace(_moveInput.x > 0);
+            
+            // Update animation to idle-ish state
+            if (animator != null)
+            {
+                animator.SetBool(ANIM_IS_MOVING, false);
+                animator.SetBool(ANIM_IS_JUMPING, false);
+                animator.SetBool(ANIM_IS_GROUNDED, true);
+            }
+            return; // Skip all normal movement logic
+        }
+
+
+
         if (IsInputLocked)
         {
             RB.velocity = Vector2.zero; // Stop sliding immediately
-            if (animator != null) animator.SetBool("isMoving", false); // Stop running anim
+            if (animator != null) animator.SetBool(ANIM_IS_MOVING, false); // Stop running anim
             return; 
         }
-        // ----------------------------------
+
 
         float dt = Time.deltaTime;
 
@@ -125,13 +167,13 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region INPUT HANDLER
-        _moveInput.x = Input.GetAxisRaw("Horizontal");
-        _moveInput.y = Input.GetAxisRaw("Vertical");
+        _moveInput.x = GameInput.GetHorizontal();
+        _moveInput.y = GameInput.GetVertical();
 
         if (_moveInput.x != 0 && !IsClimbing)
             CheckDirectionToFace(_moveInput.x > 0);
 
-        if (Input.GetKeyDown(GameKeys.Jump))
+        if (GameInput.GetJumpDown())
         {
             if (IsClimbing)
             {
@@ -144,9 +186,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(GameKeys.Jump)) OnJumpUpInput();
+        if (GameInput.GetJumpUp()) OnJumpUpInput();
 
-        if (Input.GetKeyDown(GameKeys.Dash)) OnDashInput();
+        if (GameInput.GetDashDown()) OnDashInput();
 
         if (_canClimb && Mathf.Abs(_moveInput.y) > 0.1f && !IsClimbing)
             StartClimbing();
@@ -297,14 +339,14 @@ public class PlayerMovement : MonoBehaviour
         #region ANIMATION
         if (animator != null)
         {
-            animator.SetBool("isMoving", Mathf.Abs(_moveInput.x) > 0.01f && LastOnGroundTime > 0);
-            animator.SetBool("isJumping", IsJumping || LastOnGroundTime <= 0);
-            animator.SetBool("isGrounded", LastOnGroundTime > 0);
-            animator.SetBool("isDashing", IsDashing);
-            animator.SetBool("isWallSliding", IsSliding);
-            animator.SetBool("isClimbing", IsClimbing);
+            animator.SetBool(ANIM_IS_MOVING, Mathf.Abs(_moveInput.x) > 0.01f && LastOnGroundTime > 0);
+            animator.SetBool(ANIM_IS_JUMPING, IsJumping || LastOnGroundTime <= 0);
+            animator.SetBool(ANIM_IS_GROUNDED, LastOnGroundTime > 0);
+            animator.SetBool(ANIM_IS_DASHING, IsDashing);
+            animator.SetBool(ANIM_IS_WALL_SLIDING, IsSliding);
+            animator.SetBool(ANIM_IS_CLIMBING, IsClimbing);
 
-            animator.SetFloat("VerticalSpeed", RB.velocity.y);
+            animator.SetFloat(ANIM_VERTICAL_SPEED, RB.velocity.y);
 
             if (IsClimbing)
             {
@@ -322,9 +364,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsLunging) return;
 
-        // --- NEW: Safety check for physics ---
-        if (IsInputLocked) return; 
-        // -------------------------------------
+        if (IsInputLocked) return;
 
         if (IsClimbing)
         {
@@ -356,6 +396,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsWallJumping) Run(Data.wallJumpRunLerp);
             else Run(1);
+
+            HandleStepOffset();
         }
         else if (_isDashAttacking)
         {
@@ -364,6 +406,45 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsSliding) Slide();
     }
+
+    private void HandleStepOffset()
+    {
+        // Only attempt to step up if moving horizontally and grounded
+        if (Mathf.Abs(_moveInput.x) < 0.01f || !IsGrounded() || IsJumping || IsDashAttacking()) return;
+
+        // Raycast forward at foot level
+        Vector2 dir = IsFacingRight ? Vector2.right : Vector2.left;
+        
+        // Calculate foot position slightly above the bottom to avoid hitting the floor itself
+        Vector2 footPos = (Vector2)transform.position + new Vector2(0, -MainCollider.bounds.extents.y + 0.05f);
+        
+        // 1. Check if there is a low obstacle in front of the feet
+        RaycastHit2D hitLower = Physics2D.Raycast(footPos, dir, 0.4f, _groundLayer);
+        
+        if (hitLower.collider != null)
+        {
+            // 2. Check if there is clear space at the "Step Height"
+            // We cast slightly further than the lower ray to ensure we can actually clear the top
+            Vector2 stepPos = footPos + new Vector2(0, stepHeight);
+            RaycastHit2D hitUpper = Physics2D.Raycast(stepPos, dir, 0.5f, _groundLayer);
+            
+            if (hitUpper.collider == null)
+            {
+                // Nothing is blocking the upper level, but something is blocking the feet. 
+                // Smoothly nudge the player up.
+                // We use a small vertical offset scaled by fixedDeltaTime for smoothness
+                RB.position += new Vector2(0, stepSmooth);
+                
+                // Optional: Zero out vertical velocity to prevent "popping" if they were falling slightly
+                if (RB.velocity.y < 0)
+                {
+                    RB.velocity = new Vector2(RB.velocity.x, 0);
+                }
+            }
+        }
+    }
+
+    private bool IsDashAttacking() => IsDashing && _isDashAttacking;
 
     #region CLIMBING METHODS
     void StartClimbing()
@@ -431,11 +512,11 @@ public class PlayerMovement : MonoBehaviour
             
             if (animator != null) 
             {
-                animator.SetBool("isMoving", false);
-                animator.SetBool("isJumping", false);
-                animator.SetBool("isDashing", false);
-                animator.SetBool("isWallSliding", false);
-                animator.SetBool("isClimbing", false);
+                animator.SetBool(ANIM_IS_MOVING, false);
+                animator.SetBool(ANIM_IS_JUMPING, false);
+                animator.SetBool(ANIM_IS_DASHING, false);
+                animator.SetBool(ANIM_IS_WALL_SLIDING, false);
+                animator.SetBool(ANIM_IS_CLIMBING, false);
             }
 
             if (_health != null) _health.SetCutsceneInvincibility(true);
@@ -460,6 +541,39 @@ public class PlayerMovement : MonoBehaviour
     private bool CheckWall(Transform point)
     {
         return point != null && Physics2D.OverlapBox(point.position, _wallCheckSize, 0, wallJumpLayer);
+    }
+
+    /// <summary>
+    /// Toggles developer fly/noclip mode (Ctrl+Shift+C)
+    /// </summary>
+    private void ToggleDevMode()
+    {
+        _isDevModeActive = !_isDevModeActive;
+        
+        if (_isDevModeActive)
+        {
+            // Enable fly mode: disable collision and gravity
+            if (MainCollider != null) MainCollider.enabled = false;
+            RB.gravityScale = 0f;
+            RB.velocity = Vector2.zero;
+            
+            // Stop all current states
+            IsJumping = false;
+            IsWallJumping = false;
+            IsDashing = false;
+            IsSliding = false;
+            if (IsClimbing) StopClimbing();
+            
+            Debug.Log("<color=cyan>[DEV MODE] Fly/Noclip mode enabled - use arrow keys to move</color>");
+        }
+        else
+        {
+            // Disable fly mode: restore collision and gravity
+            if (MainCollider != null) MainCollider.enabled = true;
+            SetGravityScale(Data.gravityScale);
+            
+            Debug.Log("<color=cyan>[DEV MODE] Fly/Noclip mode disabled</color>");
+        }
     }
     #endregion
 
@@ -520,7 +634,7 @@ public class PlayerMovement : MonoBehaviour
         {
             force *= Data.doubleJumpForceMult;
             
-            if(animator != null) animator.SetTrigger("DoubleJump");
+            if(animator != null) animator.SetTrigger(ANIM_DOUBLE_JUMP);
         }
 
         RB.velocity = new Vector2(RB.velocity.x, 0);
@@ -606,7 +720,9 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float targetSpeed = -Data.slideSpeed;
+        // Use accelerated slide speed when pressing S key
+        float currentSlideSpeed = (_moveInput.y < 0) ? Data.fastSlideSpeed : Data.slideSpeed;
+        float targetSpeed = -currentSlideSpeed;
         float speedDif = targetSpeed - RB.velocity.y;
         float movement = speedDif * Data.slideAccel;
         movement = Mathf.Clamp(movement, -Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime), Mathf.Abs(speedDif) * (1 / Time.fixedDeltaTime));

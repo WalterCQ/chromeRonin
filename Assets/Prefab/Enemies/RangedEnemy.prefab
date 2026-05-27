@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08c7525d91e3ab4aa7204f6f71d255c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   maxHealth: 1
   isPlayer: 0
   isEnemy: 1
@@ -183,6 +184,7 @@ MonoBehaviour:
   invincibilityDuration: 0.2
   spriteRenderer: {fileID: 7791046501003017909}
   hurtColor: {r: 1, g: 0.5, b: 0.5, a: 0.8}
+  godMode: 0
 --- !u!95 &4776153861835395452
 Animator:
   serializedVersion: 5
@@ -324,8 +326,12 @@ MonoBehaviour:
   groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8384
   edgeCheck: {fileID: 4718267766752227174}
+  isFlyingEnemy: 0
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 4288
   bulletPrefab: {fileID: 1836189820633871323, guid: 394bec14595ecb5428525209058f4a11, type: 3}
   firePoint: {fileID: 6122262686012390046}
   attackRange: 8
@@ -335,6 +341,10 @@ MonoBehaviour:
     m_Bits: 8384
   stopDistance: 6
   laserSight: {fileID: 4974751544208020711}
+  animator: {fileID: 0}
+  chargeUpTime: 0.5
+  chaseRange: 10
+  loseAggroTime: 2
 --- !u!1 &3061682735196069629
 GameObject:
   m_ObjectHideFlags: 0

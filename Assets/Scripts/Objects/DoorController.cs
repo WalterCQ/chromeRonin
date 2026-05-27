@@ -47,7 +47,7 @@ public class DoorController : MonoBehaviour
         _openPos = _closedPos + openOffset;
         _camPreview = FindObjectOfType<LevelCameraPreview>();
 
-        // --- TYPE 1: EXIT DOOR LOGIC ---
+        // Exit Door: hide trigger at start
         if (isExitDoor)
         {
             // Ensure Exit Trigger is hidden at start
@@ -55,7 +55,7 @@ public class DoorController : MonoBehaviour
             // Ensure Exit Doors don't block the player (per your preference)
             if (doorCollider != null) doorCollider.enabled = false; 
         }
-        // --- TYPE 2: BARRIER DOOR LOGIC ---
+        // Barrier Door: ensure solid at start
         else
         {
             // Ensure Barrier is SOLID at start
@@ -97,12 +97,12 @@ public class DoorController : MonoBehaviour
 
         if (animator != null) animator.SetBool("isOpen", true);
 
-        // --- EXIT DOOR: Enable the Trigger ---
+        // Exit Door: enable the trigger
         if (isExitDoor)
         {
             if (exitTriggerObject != null) exitTriggerObject.SetActive(true);
         }
-        // --- BARRIER DOOR: Handle Physics ---
+        // Barrier Door: handle physics
         else
         {
             StopAllCoroutines();
@@ -123,12 +123,12 @@ public class DoorController : MonoBehaviour
 
         if (animator != null) animator.SetBool("isOpen", false);
 
-        // --- EXIT DOOR: Disable Trigger ---
+        // Exit Door: disable trigger
         if (isExitDoor)
         {
             if (exitTriggerObject != null) exitTriggerObject.SetActive(false);
         }
-        // --- BARRIER DOOR: Re-enable Physics ---
+        // Barrier Door: re-enable physics
         else
         {
             StopAllCoroutines();

@@ -130,6 +130,27 @@ public class HUDController : MonoBehaviour
         {
             SetupDefaultGradient();
         }
+
+        // EVENT SUBSCRIPTION (Observer Pattern)
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPlayerHealthChanged += HandleHealthChanged;
+            GameManager.Instance.OnCoinChanged += HandleCoinChanged;
+            
+            // Init values
+            HandleHealthChanged(GameManager.Instance.playerCurrentHealth);
+            HandleCoinChanged(GameManager.Instance.coins);
+        }
+    }
+
+    void OnDestroy()
+    {
+        // EVENT UNSUBSCRIPTION
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPlayerHealthChanged -= HandleHealthChanged;
+            GameManager.Instance.OnCoinChanged -= HandleCoinChanged;
+        }
     }
     
     void SetupDefaultGradient()
@@ -205,16 +226,6 @@ public class HUDController : MonoBehaviour
                 _heartRects.Add(heartRect);
             }
         }
-        
-        // Initialize with current health
-        if (GameManager.Instance != null)
-        {
-            _currentDisplayedHealth = GameManager.Instance.playerCurrentHealth > 0 
-                ? GameManager.Instance.playerCurrentHealth 
-                : maxHearts;
-            _previousHealth = _currentDisplayedHealth;
-            UpdateHeartVisuals(_currentDisplayedHealth, false);
-        }
     }
     
     void InitializeCoins()
@@ -225,21 +236,66 @@ public class HUDController : MonoBehaviour
             if (_coinIconRect != null)
                 _originalCoinScale = _coinIconRect.localScale;
         }
-        
-        if (GameManager.Instance != null)
-            _previousCoins = GameManager.Instance.coins;
     }
 
     void Update()
     {
         UpdateChronoBar();
-        UpdateHearts();
-        UpdateCoins();
+    }
+
+    // ==================== EVENT HANDLERS ====================
+
+    void HandleHealthChanged(int currentHealth)
+    {
+        if (currentHealth < 0) currentHealth = maxHearts;
+        
+        // Detect damage
+        if (currentHealth != _previousHealth && _previousHealth != -1)
+        {
+            bool tookDamage = currentHealth < _previousHealth;
+            int changedIndex = tookDamage ? currentHealth : currentHealth - 1;
+            
+            UpdateHeartVisuals(currentHealth, true);
+            
+            if (changedIndex >= 0 && changedIndex < _heartImages.Count)
+            {
+                if (_heartAnimCoroutine != null)
+                    StopCoroutine(_heartAnimCoroutine);
+                _heartAnimCoroutine = StartCoroutine(AnimateHeart(changedIndex, tookDamage));
+            }
+            
+            if (tookDamage) StartCoroutine(ShakeHearts());
+        }
+        else
+        {
+            // Initial set
+            UpdateHeartVisuals(currentHealth, false);
+        }
+
+        _previousHealth = currentHealth;
+        _currentDisplayedHealth = currentHealth;
+        
+        // Heartbeat animation when low health
+        if (currentHealth > 0 && currentHealth <= 2)
+        {
+        }
+    }
+
+    void HandleCoinChanged(int newAmount)
+    {
+        if (coinText != null) coinText.text = newAmount.ToString("000");
+        
+        if (newAmount > _previousCoins && _previousCoins != -1)
+        {
+            StartCoroutine(AnimateCoinPickup());
+        }
+        _previousCoins = newAmount;
     }
 
     // ==================== CHRONO BAR UPDATE ====================
     void UpdateChronoBar()
     {
+        // ... (Keep existing ChronoBar logic as is)
         if (TimeManager.Instance == null || chronoBarFill == null)
             return;
             
@@ -247,20 +303,14 @@ public class HUDController : MonoBehaviour
         float maxEnergy = TimeManager.Instance.maxChronoEnergy;
         float energyPercent = currentEnergy / maxEnergy;
         
-        // Detect energy changes
-        if (currentEnergy > _previousEnergy + 0.5f)
-            TriggerBarFlash();
-        if (_previousEnergy > 0 && currentEnergy <= 0)
-            TriggerBarShake();
+        if (currentEnergy > _previousEnergy + 0.5f) TriggerBarFlash();
+        if (_previousEnergy > 0 && currentEnergy <= 0) TriggerBarShake();
             
         _previousEnergy = currentEnergy;
         
         bool isOverclockActive = Time.timeScale < 1f && Time.timeScale > 0f && !GameManager.Instance.isGamePaused;
-        
-        // Non-linear easing animation for fill
         float targetFill = energyPercent;
         
-        // Start new easing when target changes significantly
         if (Mathf.Abs(_easeTargetValue - targetFill) > fillSnapThreshold)
         {
             _easeStartValue = _displayedFillAmount;
@@ -269,27 +319,16 @@ public class HUDController : MonoBehaviour
             _isEasing = true;
         }
         
-        // Apply easing animation
         if (_isEasing)
         {
             _easeElapsed += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(_easeElapsed / easeDuration);
-            
-            // Apply EaseOutQuart - optimal for energy bar
             float easedT = EaseOutQuart(t);
             _displayedFillAmount = Mathf.LerpUnclamped(_easeStartValue, _easeTargetValue, easedT);
-            
-            // Clamp to valid range
             _displayedFillAmount = Mathf.Clamp01(_displayedFillAmount);
-            
-            if (t >= 1f)
-            {
-                _isEasing = false;
-                _displayedFillAmount = _easeTargetValue;
-            }
+            if (t >= 1f) { _isEasing = false; _displayedFillAmount = _easeTargetValue; }
         }
         
-        // Apply segmented look if enabled
         if (useSegmentedBar && segmentCount > 0)
         {
             float segmentedValue = Mathf.Floor(_displayedFillAmount * segmentCount) / segmentCount;
@@ -300,11 +339,9 @@ public class HUDController : MonoBehaviour
             chronoBarFill.fillAmount = _displayedFillAmount;
         }
         
-        // Dynamic color
         Color targetColor = GetChronoTargetColor(energyPercent, isOverclockActive);
         _currentBarColor = Color.Lerp(_currentBarColor, targetColor, Time.unscaledDeltaTime * colorLerpSpeed);
         
-        // Pulse effect when low - only apply color pulsing, not scale to avoid shaking
         Color finalColor = _currentBarColor;
         float scaleMultiplier = 1f;
         
@@ -312,26 +349,17 @@ public class HUDController : MonoBehaviour
         {
             float speed = energyPercent <= criticalEnergyThreshold ? criticalPulseSpeed : pulseSpeed;
             float pulse = Mathf.Sin(Time.unscaledTime * speed) * 0.5f + 0.5f;
-            
             finalColor = Color.Lerp(_currentBarColor, _currentBarColor * 1.5f, pulse * pulseIntensity);
             finalColor.a = 1f;
-            
-            // Only apply scale bounce when critically low, not during normal low energy
-            if (energyPercent <= criticalEnergyThreshold)
-            {
-                scaleMultiplier = 1f + pulse * scaleBounceMagnitude;
-            }
+            if (energyPercent <= criticalEnergyThreshold) scaleMultiplier = 1f + pulse * scaleBounceMagnitude;
         }
         
-        // Active overclock pulsing - color only, no scale to prevent shaking
         if (isOverclockActive)
         {
             float activePulse = Mathf.Sin(Time.unscaledTime * 8f) * 0.5f + 0.5f;
             finalColor = Color.Lerp(finalColor, activeOverclockColor, 0.3f + activePulse * 0.2f);
-            // Removed scale pulsing during overclock to prevent bar shaking
         }
         
-        // Flash effect
         if (_flashTimer > 0)
         {
             _flashTimer -= Time.unscaledDeltaTime;
@@ -341,19 +369,20 @@ public class HUDController : MonoBehaviour
         
         chronoBarFill.color = finalColor;
         
-        // Apply scale
         if (_barRectTransform != null && !_isBarShaking)
-        {
             _barRectTransform.localScale = _originalBarScale * scaleMultiplier;
-        }
-        
-        // Shake effect
+            
         UpdateBarShake();
-        
-        // Glow effect
         UpdateChronoGlow(energyPercent, isOverclockActive);
+
+        // Low Health Heartbeat Logic (moved from UpdateHearts)
+        if (_currentDisplayedHealth > 0 && _currentDisplayedHealth <= 2)
+        {
+            AnimateHeartbeat(_currentDisplayedHealth);
+        }
     }
     
+    // ... (Helper methods remain unchanged)
     Color GetChronoTargetColor(float energyPercent, bool isOverclockActive)
     {
         if (energyPercent <= 0)
@@ -371,9 +400,8 @@ public class HUDController : MonoBehaviour
     
     // ==================== EASING FUNCTION ====================
     /// <summary>
-    /// EaseOutQuart - 最适合能量条的缓动函数
-    /// 特点：快速响应 → 平滑减速到位
-    /// 公式：1 - (1 - t)^4
+    /// EaseOutQuart - Best easing function for energy bars.
+    /// Fast response → Smooth deceleration. Formula: 1 - (1 - t)^4
     /// </summary>
     float EaseOutQuart(float t)
     {
@@ -450,48 +478,6 @@ public class HUDController : MonoBehaviour
     }
 
     // ==================== HEARTS UPDATE ====================
-    void UpdateHearts()
-    {
-        if (GameManager.Instance == null || _heartImages.Count == 0)
-            return;
-            
-        int currentHealth = GameManager.Instance.playerCurrentHealth;
-        
-        // Handle uninitialized health
-        if (currentHealth < 0)
-            currentHealth = maxHearts;
-            
-        // Detect health changes
-        if (currentHealth != _previousHealth && _previousHealth >= 0)
-        {
-            bool tookDamage = currentHealth < _previousHealth;
-            int changedIndex = tookDamage ? currentHealth : currentHealth - 1;
-            
-            UpdateHeartVisuals(currentHealth, true);
-            
-            if (changedIndex >= 0 && changedIndex < _heartImages.Count)
-            {
-                if (_heartAnimCoroutine != null)
-                    StopCoroutine(_heartAnimCoroutine);
-                _heartAnimCoroutine = StartCoroutine(AnimateHeart(changedIndex, tookDamage));
-            }
-            
-            // Shake all hearts on damage
-            if (tookDamage)
-            {
-                StartCoroutine(ShakeHearts());
-            }
-        }
-        
-        _previousHealth = currentHealth;
-        _currentDisplayedHealth = currentHealth;
-        
-        // Heartbeat animation when low health
-        if (currentHealth > 0 && currentHealth <= 2)
-        {
-            AnimateHeartbeat(currentHealth);
-        }
-    }
     
     void UpdateHeartVisuals(int health, bool animated)
     {

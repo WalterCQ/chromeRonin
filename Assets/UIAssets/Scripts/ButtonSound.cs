@@ -7,12 +7,25 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public AudioSource audioSource; 
     public AudioClip hoverSound;    
     public AudioClip clickSound;    
+    
+    // PlayerPrefs key for SFX volume (must match VolumeSettings)
+    private const string SFX_VOLUME_KEY = "SFXVolume";
+    private const float DEFAULT_VOLUME = 0.75f;
+    
+    private float GetSFXVolume()
+    {
+        if (SFXManager.Instance != null)
+        {
+            return SFXManager.GetVolume();
+        }
+        return PlayerPrefs.GetFloat(SFX_VOLUME_KEY, DEFAULT_VOLUME);
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (hoverSound != null && audioSource != null)
         {
-            audioSource.PlayOneShot(hoverSound);
+            audioSource.PlayOneShot(hoverSound, GetSFXVolume());
         }
     }
 
@@ -20,7 +33,7 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     {
         if (clickSound != null && audioSource != null)
         {
-            audioSource.PlayOneShot(clickSound);
+            audioSource.PlayOneShot(clickSound, GetSFXVolume());
         }
     }
 }

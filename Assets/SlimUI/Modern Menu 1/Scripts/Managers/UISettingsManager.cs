@@ -50,7 +50,9 @@ namespace SlimUI.ModernMenu{
 		public GameObject sensitivityYSlider;
 		public GameObject mouseSmoothSlider;
 
+#pragma warning disable CS0414 // Field is assigned but never used
 		private float sliderValue = 0.0f;
+#pragma warning restore CS0414
 		private float sliderValueXSensitivity = 0.0f;
 		private float sliderValueYSensitivity = 0.0f;
 		private float sliderValueSmoothing = 0.0f;

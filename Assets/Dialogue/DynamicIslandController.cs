@@ -59,6 +59,18 @@ public class SmartIslandController : MonoBehaviour
         
         // 初始隐藏声波
         if(waveformContainer) waveformContainer.gameObject.SetActive(false);
+        
+        // Apply saved SFX volume to dialogue audio
+        ApplySFXVolume();
+    }
+    
+    private void ApplySFXVolume()
+    {
+        if (audioSource != null)
+        {
+            float volume = SFXManager.Instance != null ? SFXManager.GetVolume() : PlayerPrefs.GetFloat("SFXVolume", 0.75f);
+            audioSource.volume = volume;
+        }
     }
 
     // --- 每帧更新声波图 ---

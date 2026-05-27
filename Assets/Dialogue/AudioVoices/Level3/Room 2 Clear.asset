@@ -15,20 +15,20 @@ MonoBehaviour:
   sentences:
   - speakerName: Unknown Signal
     text: Please! If anyone is listening...
-    voiceOver: {fileID: 0}
+    voiceOver: {fileID: 8300000, guid: 777693135e6be4131868997fef1284e1, type: 3}
     avatar: {fileID: 21300000, guid: 077e61f4c019344789b455c8b62295d5, type: 3}
   - speakerName: Unknown Signal
     text: We aren't terrorists! We're researchers!
-    voiceOver: {fileID: 0}
+    voiceOver: {fileID: 8300000, guid: 33f3d73c32669404fbb7e6b2cd3f33f4, type: 3}
     avatar: {fileID: 21300000, guid: 077e61f4c019344789b455c8b62295d5, type: 3}
   - speakerName: Unknown Signal
     text: "Aeterna is turning people into\u2014\n"
-    voiceOver: {fileID: 0}
+    voiceOver: {fileID: 8300000, guid: d8c7a750dcc4c4f20817184f83e38125, type: 3}
     avatar: {fileID: 21300000, guid: 077e61f4c019344789b455c8b62295d5, type: 3}
   - speakerName: System
     text: '[CONNECTION INTERRUPTED]'
-    voiceOver: {fileID: 0}
-    avatar: {fileID: 0}
+    voiceOver: {fileID: 8300000, guid: 18e8a8f49b4544482ae79314ea13314c, type: 3}
+    avatar: {fileID: 21300000, guid: 077e61f4c019344789b455c8b62295d5, type: 3}
   - speakerName: Oracle
     text: Ignore that. It was a corrupted file. Enemy propaganda.
     voiceOver: {fileID: 8300000, guid: ab1a72a7c5f784a558e0e85de9185e09, type: 3}

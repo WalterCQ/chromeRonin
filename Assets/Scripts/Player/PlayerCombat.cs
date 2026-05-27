@@ -75,11 +75,8 @@ public class PlayerCombat : MonoBehaviour
 
         if (Time.unscaledTime < _inputBlockTime) return;
 
-        // --- NEW CODE START ---
-        // 2. Cutscene / Input Lock Check
-        // If the movement script is locked (by camera preview), STOP all combat.
-        if (moveScript != null && moveScript.IsInputLocked) return; 
-        // --- NEW CODE END ---
+        // Cutscene / Input Lock Check - if movement script is locked, stop all combat
+        if (moveScript != null && moveScript.IsInputLocked) return;
 
         if (moveScript.IsClimbing) return; 
 

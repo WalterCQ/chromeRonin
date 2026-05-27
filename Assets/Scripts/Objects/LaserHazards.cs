@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(LineRenderer), typeof(BoxCollider2D))]
 public class LaserHazard : MonoBehaviour
@@ -9,6 +10,10 @@ public class LaserHazard : MonoBehaviour
     public float laserWidth = 0.3f;
     public LayerMask hitLayers;
     public LayerMask obstacleLayer;
+    
+    [Header("Damage Settings")]
+    [Tooltip("Time in seconds between damage ticks")]
+    public float damageCooldown = 0.5f;
 
     [Header("Movement Settings")]
     public bool isMoving = false;
@@ -22,6 +27,9 @@ public class LaserHazard : MonoBehaviour
     private BoxCollider2D _collider;
     private Rigidbody2D _rb;
     private bool _movingRight = true;
+    
+    // Track damage cooldowns per target
+    private Dictionary<Collider2D, float> _damageCooldowns = new Dictionary<Collider2D, float>();
 
     void Awake()
     {
@@ -56,6 +64,9 @@ public class LaserHazard : MonoBehaviour
         {
             HandleMovement();
         }
+        
+        // Clean up expired cooldowns
+        CleanupCooldowns();
     }
 
     void HandleMovement()
@@ -75,6 +86,36 @@ public class LaserHazard : MonoBehaviour
     void Flip()
     {
         _movingRight = !_movingRight;
+    }
+    
+    void CleanupCooldowns()
+    {
+        List<Collider2D> toRemove = new List<Collider2D>();
+        foreach (var kvp in _damageCooldowns)
+        {
+            if (kvp.Key == null || Time.time > kvp.Value + damageCooldown + 1f)
+            {
+                toRemove.Add(kvp.Key);
+            }
+        }
+        foreach (var key in toRemove)
+        {
+            _damageCooldowns.Remove(key);
+        }
+    }
+    
+    bool CanDamage(Collider2D target)
+    {
+        if (!_damageCooldowns.ContainsKey(target))
+        {
+            return true;
+        }
+        return Time.time >= _damageCooldowns[target] + damageCooldown;
+    }
+    
+    void RecordDamage(Collider2D target)
+    {
+        _damageCooldowns[target] = Time.time;
     }
 
     void UpdateLaser()
@@ -96,10 +137,15 @@ public class LaserHazard : MonoBehaviour
             endPos = hit.point;
             dist = hit.distance;
 
-            IDamageable damageable = hit.collider.GetComponent<IDamageable>();
-            if (damageable != null)
+            // Only deal damage if cooldown has expired for this target
+            if (CanDamage(hit.collider))
             {
-                damageable.TakeDamage(damageAmount);
+                IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(damageAmount);
+                    RecordDamage(hit.collider);
+                }
             }
         }
         else

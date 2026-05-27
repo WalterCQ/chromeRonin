@@ -15,12 +15,15 @@ public class ReflectedBullet : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        transform.localScale = new Vector3(bulletSize, bulletSize, 1f);
     }
 
-    void Start()
+    void OnEnable()
     {
-        Destroy(gameObject, 3f); 
+        transform.localScale = new Vector3(bulletSize, bulletSize, 1f);
+        
+        // Auto-return after 3s if nothing hit
+        if(ObjectPool.Instance != null)
+            ObjectPool.Instance.Return(gameObject, 3f);
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -50,7 +53,7 @@ public class ReflectedBullet : MonoBehaviour
 
         if ((solidLayers.value & (1 << hitInfo.gameObject.layer)) > 0)
         {
-            Destroy(gameObject);
+            ReturnToPool();
             return;
         }
 
@@ -58,7 +61,15 @@ public class ReflectedBullet : MonoBehaviour
         if (target != null)
         {
             target.TakeDamage(damage);
-            Destroy(gameObject);
+            ReturnToPool();
         }
+    }
+
+    void ReturnToPool()
+    {
+        if(ObjectPool.Instance != null)
+            ObjectPool.Instance.Return(gameObject);
+        else
+            Destroy(gameObject);
     }
 }

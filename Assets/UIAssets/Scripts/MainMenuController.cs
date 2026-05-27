@@ -10,6 +10,8 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         GameKeys.LoadKeys();
 
         if (mainButtonsPanel != null) mainButtonsPanel.SetActive(true);
@@ -19,6 +21,10 @@ public class MainMenuController : MonoBehaviour
 
     void Update()
     {
+        // NEW: Check if we are currently rebinding a key
+        // If we are, ignore the Escape key so it only cancels the rebind
+        if (RebindText.isRebinding) return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (keySettingsPanel != null && keySettingsPanel.activeSelf)
@@ -32,24 +38,6 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-
-    public void ResumeGame()
-    {
-        FindObjectOfType<GameManager>()?.ContinueGame();
-    }
-
-    public void NewGame()
-    {
-        FindObjectOfType<GameManager>()?.NewGame();
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quit Game Triggered"); 
-        Application.Quit();
-    }
-
-
     public void OpenKeySettings()
     {
         mainButtonsPanel.SetActive(false);
@@ -58,10 +46,19 @@ public class MainMenuController : MonoBehaviour
 
     public void CloseKeySettings()
     {
-        keySettingsPanel.SetActive(false);
-        mainButtonsPanel.SetActive(true);
-    }
+        if (keySettingsPanel != null)
+        {
+            // Reset any active listeners as a safety measure
+            RebindText[] rebinds = keySettingsPanel.GetComponentsInChildren<RebindText>();
+            foreach (RebindText rebind in rebinds)
+            {
+                rebind.StopRebinding();
+            }
+            keySettingsPanel.SetActive(false);
+        }
 
+        if (mainButtonsPanel != null) mainButtonsPanel.SetActive(true);
+    }
 
     public void OpenLevelSelect()
     {
@@ -74,4 +71,8 @@ public class MainMenuController : MonoBehaviour
         levelSelectPanel.SetActive(false);
         mainButtonsPanel.SetActive(true);
     }
+
+    public void ResumeGame() { FindObjectOfType<GameManager>()?.ContinueGame(); }
+    public void NewGame() { FindObjectOfType<GameManager>()?.NewGame(); }
+    public void QuitGame() { Application.Quit(); }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5336688914584542332}
   - component: {fileID: 9214627963600245070}
   - component: {fileID: 8983625270555982851}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EnemyBullet_Prefab
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
@@ -167,5 +167,5 @@ MonoBehaviour:
   bulletSize: 0.3
   solidLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 8384
   friendlyFire: 0

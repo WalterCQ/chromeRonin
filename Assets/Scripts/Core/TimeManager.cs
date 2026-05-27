@@ -29,6 +29,11 @@ public class TimeManager : MonoBehaviour
     private bool _isHitStopActive = false; 
     private float _fixedDeltaTime; 
 
+    [Header("Auto-Overclock Settings")]
+    public float autoSlowdownDuration = 1.5f;
+    public bool isAutoSlowEnabled = true; // NEW: Toggleable preference
+    private float _autoSlowTimer = 0f;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -37,9 +42,27 @@ public class TimeManager : MonoBehaviour
         _fixedDeltaTime = Time.fixedDeltaTime;
         ResetEnergy();
 
+        // Load preference (Default to enabled)
+        isAutoSlowEnabled = PlayerPrefs.GetInt("AutoSlowPref", 1) == 1;
+
         GameKeys.LoadKeys(); 
     }
 
+    public void SetAutoSlowPreference(bool enabled)
+    {
+        isAutoSlowEnabled = enabled; // This line updates the LIVE gameplay behavior
+        PlayerPrefs.SetInt("AutoSlowPref", enabled ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public void TriggerAutoSlow()
+    {
+        // Check both energy AND player preference
+        if (!isAutoSlowEnabled || _autoSlowTimer > 0 || currentChronoEnergy <= 5f) return;
+        
+        _autoSlowTimer = autoSlowdownDuration;
+        currentChronoEnergy -= 10f; 
+    }
     void Update()
     {
         if (GameManager.Instance != null && (GameManager.Instance.isGamePaused || GameManager.Instance.isGameOver))
@@ -101,16 +124,17 @@ public class TimeManager : MonoBehaviour
 
         currentChronoEnergy = Mathf.Clamp(currentChronoEnergy, 0, maxChronoEnergy);
     }
-
+    // Update HandleTimeScale to account for the auto-timer
     void HandleTimeScale()
     {
         if (_isHitStopActive)
         {
             Time.timeScale = 0f;
         }
-        else if (_isOverclockActive)
+        else if (_isOverclockActive || _autoSlowTimer > 0) // Check the auto timer here
         {
             Time.timeScale = slowdownFactor;
+            if (_autoSlowTimer > 0) _autoSlowTimer -= Time.unscaledDeltaTime;
         }
         else
         {

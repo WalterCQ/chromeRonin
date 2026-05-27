@@ -117,7 +117,7 @@ public class LevelCameraPreview : MonoBehaviour
             CheckForSkipInput();
             if (_skipTriggered) break;
 
-            // --- 1. Calculate Bounds & Target ---
+            // 1. Calculate Bounds & Target
             CalculateCameraBounds();
             // IMPORTANT: Calculate finalTarget inside the loop. 
             // As we zoom in/out, the valid clamp position changes!
@@ -126,7 +126,7 @@ public class LevelCameraPreview : MonoBehaviour
 
             float distToTarget = Vector3.Distance(_cam.transform.position, finalTarget);
 
-            // --- 2. Motion ---
+            // 2. Motion
             _cam.transform.position = Vector3.SmoothDamp(
                 _cam.transform.position, 
                 finalTarget, 
@@ -134,7 +134,7 @@ public class LevelCameraPreview : MonoBehaviour
                 smoothTime
             );
 
-            // --- 3. Elastic Zoom ---
+            // 3. Elastic Zoom
             // If far, Zoom Out (Travel). If close, Zoom In (Focus).
             float targetZoom = (distToTarget > 3.0f) ? travelSize : focusSize;
             
@@ -145,12 +145,12 @@ public class LevelCameraPreview : MonoBehaviour
                 smoothTime
             );
 
-            // --- 4. Safety Clamp ---
+            // 4. Safety Clamp
             // Re-clamp current position in case zoom-out pushed borders into us
             Vector3 clampedCurrent = ClampPos(_cam.transform.position);
             _cam.transform.position = new Vector3(clampedCurrent.x, clampedCurrent.y, zOffset);
 
-            // --- 5. Arrival Check ---
+            // 5. Arrival Check
             // We are arrived if Position is close AND Zoom is close to Focus
             // This prevents "Offset" bug where camera stops at wall but stays zoomed out
             bool posArrived = distToTarget < 0.05f;
@@ -186,7 +186,7 @@ public class LevelCameraPreview : MonoBehaviour
         }
     }
 
-    // --- Helpers ---
+    // Helpers
 
     public IEnumerator LookAtTarget(Vector3 targetPosition, float stayTime)
     {
@@ -214,6 +214,44 @@ public class LevelCameraPreview : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public IEnumerator FollowMovingTarget(Transform target, float duration)
+    {
+        InitializeCamera();
+        TogglePlayerControl(false);
+        _currentInputCount = 0; 
+        _skipTriggered = false;
+
+        float elapsed = 0f;
+        while (elapsed < duration && !_skipTriggered)
+        {
+            CheckForSkipInput();
+            
+            CalculateCameraBounds();
+            Vector3 finalTarget = ClampPos(target.position);
+            finalTarget.z = zOffset;
+
+            _cam.transform.position = Vector3.SmoothDamp(
+                _cam.transform.position, 
+                finalTarget, 
+                ref _currentVelocity, 
+                smoothTime * 0.5f // Faster tracking
+            );
+
+            _cam.orthographicSize = Mathf.SmoothDamp(
+                _cam.orthographicSize, 
+                focusSize, 
+                ref _currentZoomVelocity, 
+                smoothTime
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        if (_brain != null) _brain.enabled = true;
+        TogglePlayerControl(true);
     }
 
     void CheckForSkipInput()

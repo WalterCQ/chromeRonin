@@ -22,20 +22,23 @@ public class Bullet : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        transform.localScale = new Vector3(bulletSize, bulletSize, 1f);
     }
 
-    void Start()
+    void OnEnable()
     {
+        transform.localScale = new Vector3(bulletSize, bulletSize, 1f);
         if (rb) rb.velocity = transform.right * speed; 
-        Destroy(gameObject, lifeTime);
+        
+        // Use ObjectPool delayed return instead of Destroy
+        if(ObjectPool.Instance != null)
+             ObjectPool.Instance.Return(gameObject, lifeTime);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         if ((solidLayers.value & (1 << hitInfo.gameObject.layer)) > 0)
         {
-            Destroy(gameObject);
+            ReturnToPool();
             return;
         }
 
@@ -45,13 +48,21 @@ public class Bullet : MonoBehaviour
             if (friendlyFire)
             {
                 target.TakeDamage(damage);
-                Destroy(gameObject);
+                ReturnToPool();
             }
             else if (hitInfo.CompareTag("Player"))
             {
                 target.TakeDamage(damage);
-                Destroy(gameObject);
+                ReturnToPool();
             }
         }
+    }
+
+    void ReturnToPool()
+    {
+        if(ObjectPool.Instance != null)
+            ObjectPool.Instance.Return(gameObject);
+        else
+            Destroy(gameObject); // Fallback safety
     }
 }

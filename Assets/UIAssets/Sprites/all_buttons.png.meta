@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -100,12 +100,12 @@ TextureImporter:
       name: all_buttons_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 292
-        width: 290
-        height: 68
+        x: 133
+        y: 1214
+        width: 1153
+        height: 261
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -121,12 +121,12 @@ TextureImporter:
       name: all_buttons_10
       rect:
         serializedVersion: 2
-        x: 32
-        y: 222
-        width: 290
-        height: 64
+        x: 147
+        y: 927
+        width: 1140
+        height: 242
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,13 +142,13 @@ TextureImporter:
       name: all_buttons_20
       rect:
         serializedVersion: 2
-        x: 29
-        y: 153
-        width: 290
-        height: 64
+        x: 128
+        y: 646
+        width: 1158
+        height: 236
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -163,12 +163,12 @@ TextureImporter:
       name: all_buttons_30
       rect:
         serializedVersion: 2
-        x: 28
-        y: 86
-        width: 290
-        height: 64
+        x: 133
+        y: 364
+        width: 1153
+        height: 248
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: all_buttons_40
       rect:
         serializedVersion: 2
-        x: 28
-        y: 18
-        width: 290
-        height: 64
+        x: 133
+        y: 83
+        width: 1153
+        height: 241
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

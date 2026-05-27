@@ -14,7 +14,9 @@ public class PlayerAnimationEvents : MonoBehaviour
     public AudioClip shieldSound;
     public AudioClip climbSound;
 
-    
+    // PlayerPrefs key for SFX volume (must match VolumeSettings)
+    private const string SFX_VOLUME_KEY = "SFXVolume";
+    private const float DEFAULT_VOLUME = 0.75f;
 
     private float lastDashTime; 
 
@@ -43,12 +45,21 @@ public class PlayerAnimationEvents : MonoBehaviour
         }
     }
 
-    private void PlaySound(AudioClip clip, float volume = 1f)
+    private float GetSFXVolume()
+    {
+        if (SFXManager.Instance != null)
+        {
+            return SFXManager.GetVolume();
+        }
+        return PlayerPrefs.GetFloat(SFX_VOLUME_KEY, DEFAULT_VOLUME);
+    }
+
+    private void PlaySound(AudioClip clip, float volumeMultiplier = 1f)
     {
         if (clip != null && audioSource != null)
         {
             audioSource.pitch = Random.Range(0.9f, 1.1f);
-            audioSource.PlayOneShot(clip, volume);
+            audioSource.PlayOneShot(clip, GetSFXVolume() * volumeMultiplier);
         }
     }
 }

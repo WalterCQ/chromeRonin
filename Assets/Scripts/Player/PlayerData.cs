@@ -56,6 +56,8 @@ public class PlayerData : ScriptableObject
 
     [Header("Slide")]
     public float slideSpeed = 10f;
+    [Tooltip("Accelerated wall slide speed when pressing S key")]
+    public float fastSlideSpeed = 25f;
     public float slideAccel = 5f;
     public float wallStickTime = 0.25f;
 

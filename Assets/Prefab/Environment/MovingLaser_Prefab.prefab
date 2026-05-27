@@ -248,15 +248,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf2e645fef815b4f926467624e99632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 999
+  damageAmount: 3
   laserLength: 10
   laserWidth: 0.15
   hitLayers:
     serializedVersion: 2
-    m_Bits: 2240
+    m_Bits: 10432
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 5312
+    m_Bits: 12480
+  damageCooldown: 0.5
   isMoving: 1
   moveSpeed: 3
   wallCheckDist: 0.5

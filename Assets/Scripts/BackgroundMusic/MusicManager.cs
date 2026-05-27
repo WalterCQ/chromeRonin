@@ -7,15 +7,19 @@ public class MusicManager : MonoBehaviour
     private AudioSource _audioSource;
 
     [Header("Fade Settings")]
-    [Tooltip("渐入时间（秒）")]
+    [Tooltip("Fade in duration (seconds)")]
     public float fadeInDuration = 1.5f;
-    [Tooltip("渐出时间（秒）")]
+    [Tooltip("Fade out duration (seconds)")]
     public float fadeOutDuration = 1.0f;
-    [Tooltip("目标音量")]
+    [Tooltip("Target volume")]
     [Range(0f, 1f)]
     public float targetVolume = 1.0f;
 
     private Coroutine _fadeCoroutine;
+    
+    // PlayerPrefs key for music volume (must match VolumeSettings)
+    private const string MUSIC_VOLUME_KEY = "MusicVolume";
+    private const float DEFAULT_VOLUME = 0.75f;
 
     private void Awake()
     {
@@ -24,6 +28,10 @@ public class MusicManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); 
             _audioSource = GetComponent<AudioSource>();
+            
+            // Load saved volume from PlayerPrefs
+            targetVolume = PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, DEFAULT_VOLUME);
+            _audioSource.volume = targetVolume;
         }
         else
         {
@@ -38,7 +46,7 @@ public class MusicManager : MonoBehaviour
             return; 
         }
 
-        // 停止当前的渐变协程
+        // Stop current fade coroutine
         if (_fadeCoroutine != null)
         {
             StopCoroutine(_fadeCoroutine);
@@ -48,17 +56,17 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 交叉渐变到新音乐
+    /// Cross-fade to new music
     /// </summary>
     private IEnumerator CrossFadeMusic(AudioClip newClip)
     {
-        // 如果当前正在播放音乐，先渐出
+        // If currently playing music, fade out first
         if (_audioSource.isPlaying)
         {
             yield return StartCoroutine(FadeOut());
         }
 
-        // 切换到新音乐并渐入
+        // Switch to new music and fade in
         _audioSource.clip = newClip;
         _audioSource.volume = 0f;
         _audioSource.Play();
@@ -66,7 +74,7 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 渐入效果
+    /// Fade in effect
     /// </summary>
     private IEnumerator FadeIn()
     {
@@ -84,7 +92,7 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 渐出效果
+    /// Fade out effect
     /// </summary>
     private IEnumerator FadeOut()
     {
@@ -103,7 +111,7 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 停止音乐（带渐出效果）
+    /// Stop music (with fade out effect)
     /// </summary>
     public void StopMusic()
     {
@@ -121,7 +129,7 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 暂停音乐（带渐出效果）
+    /// Pause music (with fade out effect)
     /// </summary>
     public void PauseMusic()
     {
@@ -139,7 +147,7 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 恢复音乐（带渐入效果）
+    /// Resume music (with fade in effect)
     /// </summary>
     public void ResumeMusic()
     {
@@ -152,7 +160,7 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 设置音量（立即生效）
+    /// Set volume (takes effect immediately)
     /// </summary>
     public void SetVolume(float volume)
     {

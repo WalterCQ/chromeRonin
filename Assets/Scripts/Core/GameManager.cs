@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public int coins = 0;
 
+    [Header("Kill Rewards")]
+    public int killsToHeal = 3;
+    private int _currentKillCount = 0;
+
     [Header("Persistence")]
     public int playerCurrentHealth;
     public int spawnID = 0;
@@ -28,6 +32,10 @@ public class GameManager : MonoBehaviour
     private bool shouldPreserveStats = false; 
     private bool isResumingFromSave = false;
 
+    // Cached component references for performance
+    private PauseManager _cachedPauseManager;
+    private GameOverManager _cachedGameOverManager;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,6 +47,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Physics safety: prevents tunnelling through walls on frame rate drops or Alt+Tab
+        Time.maximumDeltaTime = 0.1f; 
     }
 
     void OnDestroy()
@@ -52,16 +63,25 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == mainMenuSceneName)
             return;
 
+        if (RebindText.isRebinding) return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
             HandlePauseInput();
     }
 
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus && !isGamePaused && SceneManager.GetActiveScene().name != mainMenuSceneName)
+        {
+            TogglePause();
+        }
+    }
+
     void HandlePauseInput()
     {
-        PauseManager pm = FindObjectOfType<PauseManager>();
-        if (pm != null && pm.keySettingsPanel.activeSelf)
+        if (_cachedPauseManager != null && _cachedPauseManager.keySettingsPanel.activeSelf)
         {
-            pm.CloseKeySettings();
+            _cachedPauseManager.CloseKeySettings();
             return;
         }
 
@@ -73,9 +93,8 @@ public class GameManager : MonoBehaviour
         isGamePaused = !isGamePaused;
         Time.timeScale = isGamePaused ? 0f : 1f;
 
-        PauseManager pm = FindObjectOfType<PauseManager>();
-        if (pm != null)
-            pm.SetPauseState(isGamePaused);
+        if (_cachedPauseManager != null)
+            _cachedPauseManager.SetPauseState(isGamePaused);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -84,40 +103,31 @@ public class GameManager : MonoBehaviour
         isGamePaused = false;
         Time.timeScale = 1f;
 
+        _cachedPauseManager = FindObjectOfType<PauseManager>();
+        _cachedGameOverManager = FindObjectOfType<GameOverManager>();
+
         if (scene.name == mainMenuSceneName)
             return;
 
-        // --- STATS LOGIC ---
         if (!shouldPreserveStats)
         {
-            // CASE A: We are resetting (Level Transition, Resume, New Game)
-            // 1. Reset Chrono Bar
             if (TimeManager.Instance != null) TimeManager.Instance.ResetEnergy();
-            
-            // 2. Set HP flag to -1 (Means "Give me Max Health" in Spawn routine)
             playerCurrentHealth = -1; 
-        }
-        else
-        {
-            // CASE B: Room Transition
-            // We do nothing. We keep the 'playerCurrentHealth' value we have in memory.
-            // We do not reset TimeManager.
+            _currentKillCount = 0; // Reset kill count on fresh level
         }
 
         SpawnAndRestorePlayer();
 
-        // Checkpointing
         if (!isResumingFromSave)
         {
             PlayerPrefs.SetString("SavedLevel", scene.name);
             PlayerPrefs.SetInt("SavedSpawnID", spawnID);
-            // We always save the health we currently have (whether it was just maxed or preserved)
             PlayerPrefs.SetInt("SavedHealth", playerCurrentHealth);
             PlayerPrefs.Save();
         }
 
         isResumingFromSave = false;
-        shouldPreserveStats = false; // Always reset flag to "Fresh" for safety
+        shouldPreserveStats = false; 
     }
 
     void SpawnAndRestorePlayer()
@@ -133,7 +143,6 @@ public class GameManager : MonoBehaviour
         Health health = player.GetComponent<Health>();
         if (health != null)
         {
-            // If flag is -1, it means we want a Fresh Start (Max HP)
             if (playerCurrentHealth == -1) 
             {
                 playerCurrentHealth = health.maxHealth;
@@ -149,8 +158,7 @@ public class GameManager : MonoBehaviour
             {
                 player.transform.position = entrance.transform.position;
 
-                CinemachineVirtualCamera vcam =
-                    FindObjectOfType<CinemachineVirtualCamera>();
+                CinemachineVirtualCamera vcam = FindObjectOfType<CinemachineVirtualCamera>();
 
                 if (vcam != null)
                 {
@@ -165,15 +173,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // --- UPDATED LOAD LEVEL ---
-    // Added 'resetStats' parameter. Defaults to TRUE (Fresh Start)
+    public void RegisterEnemyKill()
+    {
+        _currentKillCount++;
+        
+        if (_currentKillCount >= killsToHeal)
+        {
+            _currentKillCount = 0;
+            HealPlayer(1);
+        }
+    }
+
+    public void HealPlayer(int amount)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Health health = player.GetComponent<Health>();
+            if (health != null && health.CurrentHealth < health.maxHealth)
+            {
+                int newHealth = Mathf.Min(health.CurrentHealth + amount, health.maxHealth);
+                health.SetHealth(newHealth);
+                UpdatePlayerHealth(newHealth);
+                Debug.Log("Regenerated 1 HP from Kills!");
+            }
+        }
+    }
+
     public void LoadLevel(string sceneName, int targetID, bool resetStats = true)
     {
         spawnID = targetID;
-        // If we are resetting stats (Level Change), we do NOT preserve.
-        // If we are NOT resetting stats (Room Change), we DO preserve.
         shouldPreserveStats = !resetStats; 
-        
         SceneManager.LoadScene(sceneName);
     }
 
@@ -187,44 +217,43 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
         isResumingFromSave = true;
-        shouldPreserveStats = false; // RESUME = FRESH START (Max HP)
+        shouldPreserveStats = false; 
 
         spawnID = PlayerPrefs.GetInt("SavedSpawnID");
-        // Note: We ignore "SavedHealth" from PlayerPrefs to ensure fair restart
-        
         SceneManager.LoadScene(PlayerPrefs.GetString("SavedLevel"));
     }
 
     public void NewGame()
     {
         PlayerPrefs.DeleteAll();
-
         coins = 0;
         spawnID = 0;
-        shouldPreserveStats = false; // FRESH START
-
+        shouldPreserveStats = false; 
         SceneManager.LoadScene(1);
     }
+
+    public event System.Action<int> OnPlayerHealthChanged;
+    public event System.Action<int> OnCoinChanged;
 
     public void UpdatePlayerHealth(int newHealth)
     {
         playerCurrentHealth = newHealth;
+        OnPlayerHealthChanged?.Invoke(playerCurrentHealth);
     }
 
     public void AddCoin(int amount)
     {
         coins += amount;
+        OnCoinChanged?.Invoke(coins);
     }
 
     public void TriggerGameOver()
     {
         if (isGameOver) return;
-
         isGameOver = true;
 
-        GameOverManager deathScreen = FindObjectOfType<GameOverManager>();
-        if (deathScreen != null)
-            deathScreen.PlayDeathSequence(OnDeathSequenceFinished);
+        if (_cachedGameOverManager != null)
+            _cachedGameOverManager.PlayDeathSequence(OnDeathSequenceFinished);
         else
             StartCoroutine(FallbackRestartRoutine());
     }
@@ -234,8 +263,7 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         Time.timeScale = 1f;
         coins = 0;
-        shouldPreserveStats = false; // Death = Full Restart = Max HP
-
+        shouldPreserveStats = false; 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

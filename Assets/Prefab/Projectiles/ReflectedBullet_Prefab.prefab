@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 100
+  damage: 1
   bulletSize: 0.3
   solidLayers:
     serializedVersion: 2

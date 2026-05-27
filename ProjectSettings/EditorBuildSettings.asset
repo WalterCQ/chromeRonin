@@ -38,4 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L5R1.unity
     guid: 3c31aeed9cfbaa041bb3bc7a46e4a65e
+  - enabled: 1
+    path: Assets/Scenes/L5R2.unity
+    guid: 6feea93ce52d849a492e64019748334d
+  - enabled: 1
+    path: Assets/Scenes/L5R3.unity
+    guid: ea12a7bdb12c743d9b4ab727fc528fb3
   m_configObjects: {}

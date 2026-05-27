@@ -8,6 +8,13 @@ public class PauseManager : MonoBehaviour
     public GameObject hudPanel;
     public GameObject keySettingsPanel;  
 
+    void Update()
+    {
+        // NEW: If the player is currently typing a new key, 
+        // prevent the Escape key from closing the menu immediately.
+        if (RebindText.isRebinding) return;
+    }
+
     public void SetPauseState(bool isPaused)
     {
         if (pauseMenuPanel) 
@@ -23,6 +30,12 @@ public class PauseManager : MonoBehaviour
             }
         }
         if (hudPanel) hudPanel.SetActive(!isPaused); 
+
+        // Safety: If we unpause the game, make sure we aren't left in a "rebinding" state
+        if (!isPaused)
+        {
+            ForceResetAllRebinds();
+        }
     }
 
     public void ResumeButton()
@@ -45,8 +58,23 @@ public class PauseManager : MonoBehaviour
 
     public void CloseKeySettings()
     {
+        // NEW: Cleanup rebinding state so buttons aren't locked next time
+        ForceResetAllRebinds();
+
         keySettingsPanel.SetActive(false); 
         pauseMenuPanel.SetActive(true);  
+    }
+
+    private void ForceResetAllRebinds()
+    {
+        if (keySettingsPanel != null)
+        {
+            RebindText[] rebinds = keySettingsPanel.GetComponentsInChildren<RebindText>();
+            foreach (RebindText rebind in rebinds)
+            {
+                rebind.StopRebinding();
+            }
+        }
     }
     
     public void QuitGame()

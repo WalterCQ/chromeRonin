@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,9 +101,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 292
-        width: 342
-        height: 73
+        y: 1177.6
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: all_buttons_2_1
       rect:
         serializedVersion: 2
-        x: 342
-        y: 292
-        width: 342
-        height: 73
+        x: 1424
+        y: 1177.6
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,9 +143,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 219
-        width: 342
-        height: 73
+        y: 883.6
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +163,10 @@ TextureImporter:
       name: all_buttons_2_3
       rect:
         serializedVersion: 2
-        x: 342
-        y: 219
-        width: 342
-        height: 70
+        x: 1424
+        y: 883.6
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,9 +185,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 146
-        width: 342
-        height: 73
+        y: 589.6
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,13 +205,13 @@ TextureImporter:
       name: all_buttons_2_5
       rect:
         serializedVersion: 2
-        x: 342
-        y: 155
-        width: 342
-        height: 60
+        x: 1538
+        y: 627
+        width: 1173
+        height: 240
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 22, y: 0, z: 21, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -227,9 +227,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 73
-        width: 342
-        height: 73
+        y: 295.6
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,10 +247,10 @@ TextureImporter:
       name: all_buttons_2_7
       rect:
         serializedVersion: 2
-        x: 342
-        y: 73
-        width: 342
-        height: 73
+        x: 1424
+        y: 295.6
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,9 +269,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 342
-        height: 73
+        y: 1.6000061
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,10 +289,10 @@ TextureImporter:
       name: all_buttons_2_9
       rect:
         serializedVersion: 2
-        x: 342
-        y: 0
-        width: 342
-        height: 73
+        x: 1424
+        y: 1.6000061
+        width: 1424
+        height: 294.4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -4,11 +4,11 @@ using UnityEngine.Events;
 public class PortalController : MonoBehaviour
 {
     [Header("Settings")]
-    [Tooltip("需要激活的开关数量才能让传送门消失")]
+    [Tooltip("Number of switches required to deactivate the portal")]
     public int switchesRequired = 3;
     
     [Header("References")]
-    [Tooltip("要消失的传送门对象，如果为空则使用当前对象")]
+    [Tooltip("Portal object to disable, uses current object if empty")]
     public GameObject portalToDisable;
     
     [Header("Camera Preview")]
@@ -29,13 +29,13 @@ public class PortalController : MonoBehaviour
     {
         _camPreview = FindObjectOfType<LevelCameraPreview>();
         
-        // 如果没有指定传送门对象，则使用当前对象
+        // If no portal object is specified, use current object
         if (portalToDisable == null)
             portalToDisable = gameObject;
     }
 
     /// <summary>
-    /// 当开关被激活时调用此方法
+    /// Called when a switch is activated
     /// </summary>
     public void AddActiveSwitch()
     {
@@ -44,7 +44,7 @@ public class PortalController : MonoBehaviour
     }
 
     /// <summary>
-    /// 当开关被关闭时调用此方法
+    /// Called when a switch is deactivated
     /// </summary>
     public void RemoveActiveSwitch()
     {
@@ -69,13 +69,13 @@ public class PortalController : MonoBehaviour
         if (isDisabled) return;
         isDisabled = true;
 
-        // 传送门消失
+        // Disable the portal
         if (portalToDisable != null)
             portalToDisable.SetActive(false);
 
         onPortalDisabled?.Invoke();
 
-        // 摄像机看向传送门位置
+        // Camera looks at portal position
         if (lookAtPortalOnDisable && _camPreview != null)
         {
             StartCoroutine(_camPreview.LookAtTarget(transform.position, cameraStayDuration));
@@ -87,7 +87,7 @@ public class PortalController : MonoBehaviour
         if (!isDisabled) return;
         isDisabled = false;
 
-        // 传送门恢复
+        // Re-enable the portal
         if (portalToDisable != null)
             portalToDisable.SetActive(true);
 

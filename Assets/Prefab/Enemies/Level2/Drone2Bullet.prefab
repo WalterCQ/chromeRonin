@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9096178195597482133}
   - component: {fileID: 3950238659310772134}
   - component: {fileID: 4356675310573554551}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Drone2Bullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}

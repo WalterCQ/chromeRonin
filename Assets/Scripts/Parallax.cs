@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ParallaxBackground : MonoBehaviour
 {
-    [Header("设置")]
+    [Header("Settings")]
     public GameObject cam;
     public float parallaxEffect;
 

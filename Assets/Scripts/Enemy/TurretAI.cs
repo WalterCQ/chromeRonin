@@ -187,15 +187,19 @@ public class TurretAI : MonoBehaviour
     {
         if (bulletPrefab && firePoint && player)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            // Calculate rotation BEFORE spawning so OnEnable gets the correct transform.right
+            Vector2 dir = (player.position - firePoint.position).normalized;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            // Spawn with correct rotation
+            GameObject bullet = ObjectPool.Instance.Get(bulletPrefab, firePoint.position, rotation);
+            
             Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
             if (bulletCollider != null && _myCollider != null)
             {
                 Physics2D.IgnoreCollision(bulletCollider, _myCollider);
             }
-            Vector2 dir = (player.position - firePoint.position).normalized;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 

@@ -150,6 +150,8 @@ MonoBehaviour:
   laserSight: {fileID: 0}
   animator: {fileID: 1783984635633971655}
   chargeUpTime: 0.5
+  chaseRange: 10
+  loseAggroTime: 2
 --- !u!114 &7540320374082590697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,9 +169,16 @@ MonoBehaviour:
   isPlayer: 0
   isEnemy: 1
   destroyOnDeath: 1
+  deactivateOnDeath: 1
   invincibilityDuration: 0.2
   spriteRenderer: {fileID: 0}
   hurtColor: {r: 1, g: 0.5, b: 0.5, a: 0.8}
+  deathParticlePrefab: {fileID: 1567724219214741378, guid: 0584eaa722bc14b90811dd411f25aee0, type: 3}
+  hurtSounds: []
+  deathSound: {fileID: 8300000, guid: 8587f28ea250f42cb98c89bcb97c84c1, type: 3}
+  audioSource: {fileID: 0}
+  soundVolume: 1
+  godMode: 0
 --- !u!95 &1783984635633971655
 Animator:
   serializedVersion: 5
